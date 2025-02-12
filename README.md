@@ -1,9 +1,10 @@
+ HEAD
 # Práctica 4 - Interfaz Gráfica en Java (MVC + Swing)
 
 📌 **Objetivos**  
 El objetivo principal de esta práctica ha sido implementar una interfaz gráfica funcional para la calculadora de salud desarrollada en las prácticas anteriores. Se ha seguido el patrón de diseño **Modelo-Vista-Controlador (MVC)**, utilizando **Java + Swing**, con una estructura de proyecto organizada y modular.
 
----
+
 
 🖌️ **Diseño de Interfaz (Mockup)**  
 Se ha diseñado un prototipo previo de la interfaz gráfica utilizando una herramienta de diseño, que refleja las principales historias de usuario del sistema. Este mockup puede encontrarse en:
@@ -12,7 +13,7 @@ Se ha diseñado un prototipo previo de la interfaz gráfica utilizando una herra
 doc/mockup.png
 ```
 
----
+
 
 💻 **Implementación técnica**  
 
@@ -27,14 +28,14 @@ doc/mockup.png
   - `controller/`
 - El proyecto incluye una clase `Main` para lanzar la aplicación.
 
----
+
 
 🧪 **Pruebas y Control de Errores**  
 - Se ha validado que todos los campos numéricos se introducen correctamente (altura, peso, edad).
 - Se controlan errores como campos vacíos, datos no válidos o conversiones erróneas.
 - Se muestran mensajes de error claros mediante `JOptionPane`.
 
----
+
 
 📦 **Exportación del Proyecto**  
 
@@ -70,7 +71,11 @@ project-healthcalc/
     └── mockup.png
 ```
 
----
+
 
 ✅ **Resumen**  
 La aplicación se ha implementado con éxito utilizando Swing y el patrón MVC. Se ha validado su funcionalidad, el control de errores y su correcta empaquetación en un `.jar`. Se ha seguido un flujo de trabajo organizado mediante ramas, commits descriptivos y estructura modular.
+
+# isa2025-healthcalc
+Health calculator used in Ingeniería del Software Avanzada
+ 19752dc (Initial commit)
