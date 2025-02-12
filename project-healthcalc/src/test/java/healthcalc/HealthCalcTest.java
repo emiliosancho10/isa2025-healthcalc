@@ -1,7 +1,10 @@
 package healthcalc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+HEAD
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+ 0f841eb (HealthCalc interface)
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,6 +12,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Tests para la calculadora de salud.")
 public class HealthCalcTest {
 
+ HEAD
 	private final HealthCalcImpl healthCalc = new HealthCalcImpl();
 	
 	// Tests para el método "idealWeight" de la clase HealthCalcImpl
@@ -222,3 +226,11 @@ public class HealthCalcTest {
 
 	
 }
+
+	@Test
+	@DisplayName("Esto es un test de ejemplo.")
+	public void bmi() {
+		assertEquals(true, true);
+	}
+}
+ 0f841eb (HealthCalc interface)
