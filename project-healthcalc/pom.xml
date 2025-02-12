@@ -70,11 +70,15 @@
       <dependency>
         <groupId>org.junit</groupId>
  HEAD
+ HEAD
         <artifactId>junit-bom</artifactId>
         <version>5.10.2</version>
 
 
         <artifactId>junit-boom</artifactId>
+
+        <artifactId>junit-bom</artifactId>
+ a97d394 (Fix: pom.xml)
         <version>5.11.4</version>
  0f841eb (HealthCalc interface)
         <type>pom</type>
@@ -86,7 +90,7 @@
   <dependencies>
  HEAD
     <!-- JUnit 5 -->
-=======
+
  0f841eb (HealthCalc interface)
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -123,6 +127,7 @@
 
   <build>
     <plugins>
+    <plugin>
       <artifactId>maven-surefire-plugin</artifactId>
       <version>3.5.2</version>
       <configuration>
@@ -146,6 +151,7 @@
           <usePhrasedClassNameInTestCaseSummary>true</usePhrasedClassNameInTestCaseSummary>
         </statelessTestsetInfoReporter>
       </configuration>
+    </plugin>
     </plugins>
   </build>
 
