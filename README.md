@@ -38,4 +38,4 @@ Se han desarrollado pruebas siguiendo **dos enfoques**:
 
 Las pruebas fueron ejecutadas correctamente, asegurando que la implementación es estable y cumple con los requerimientos.  
 
-![Descripción de la imagen](Captura)
+![Resultados de los test](Captura.PNG)
