@@ -122,5 +122,10 @@ Se han desarrollado pruebas siguiendo **dos enfoques**:
 
 Las pruebas fueron ejecutadas correctamente, asegurando que la implementación es estable y cumple con los requerimientos.  
 
+HEAD
 ![Resultados de los Tests](Captura/test-results.png)
  d1fe7a0 (Subiendo proyecto isa2025-healthcalc)
+
+
+![Descripción de la imagen](Captura)
+6cbf1dc (Update README.md)
