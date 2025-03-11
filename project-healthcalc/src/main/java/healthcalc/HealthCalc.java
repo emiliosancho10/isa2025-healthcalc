@@ -4,10 +4,15 @@ package healthcalc;
  * Calculator of some health parameters of persons.
  * 
  HEAD
+ HEAD
  * @author 
 
  * @author ISA
 0f841eb (HealthCalc interface)
+
+
+ * @author 
+ d1fe7a0 (Subiendo proyecto isa2025-healthcalc)
  *
  */
 public interface HealthCalc {
@@ -26,10 +31,15 @@ public interface HealthCalc {
 	
 	/**
  HEAD
+ HEAD
+
+
+ d1fe7a0 (Subiendo proyecto isa2025-healthcalc)
 	 * Calculate the Basal Metabolic Rate (BMR) of a person with the following formula:
 	 * For men: BMR = 10 * weight + 6.25 * height - 5 * age + 5
 	 * For women: BMR = 10 * weight + 6.25 * height - 5 * age - 161
 	 *   
+ HEAD
 	 * @param weight	Weight of the person (kg).
 	 * @param height 	Height of the person (cm).
 	 * @param gender	Gender of the person ('m' or 'w').
@@ -44,13 +54,22 @@ public interface HealthCalc {
 	 * For men: BMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age
 	 * For women: BMR = 447.593 + 9.247 * weight + 3.098 * height - 4.330 * age
 	 *
+
+
+ d1fe7a0 (Subiendo proyecto isa2025-healthcalc)
 	 * @param weight	Weight of the person (kg).
 	 * @param height 	Height of the person (cm).
-	 * @param age		Age of the person.
 	 * @param gender	Gender of the person ('m' or 'w').
-	 * @return	  		The Basal Metabolic Rate of the person (kcal/day).
+	 * @param age		Age of the person.
+	 * @return	  		The Basal Metabolic Rate of the person.
 	 * @throws Exception
 	 */
+ HEAD
 	public float basalMetabolicRate(float weight, int height, int age, char gender) throws Exception;
 }
  0f841eb (HealthCalc interface)
+
+
+	public float basalMetabolicRate(float weight, int height, char gender, int age) throws Exception;
+}
+ d1fe7a0 (Subiendo proyecto isa2025-healthcalc)
