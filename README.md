@@ -157,6 +157,8 @@ Esta versión ampliada del diagrama incorpora dos nuevos métodos que también r
   - **Éxito:** Se devuelve el resultado del peso ideal.  
 - **Disparador:** El usuario selecciona la opción de cálculo de peso ideal.
 
+![Picture 1](http://github.com/emiliosancho10/isa2025-healthcalc/blob/practica2/doc/diagrama%20de%20casos%20de%20uso%20UML%20para%20la%20calculadora%20de%20salud%20.png)
+
 ### **Extensiones**
 
 - **3a. Entrada de datos inválida:**  
@@ -177,6 +179,7 @@ Para el desarrollo de esta práctica se han gestionado las versiones del proyect
 
 Este enfoque permite mantener un historial organizado y facilita la integración de nuevas mejoras sin afectar la versión principal del sistema.
 
+![Picture 2](https://github.com/emiliosancho10/isa2025-healthcalc/blob/practica2/doc/diagrama%20de%20casos%20de%20uso%20UML%20para%20la%20calculadora%20de%20salud%20extendido.png)
 ## 🔄 Resultados de las Pruebas  
 
 Las pruebas fueron ejecutadas correctamente, asegurando que la implementación es estable y cumple con los requerimientos.  
