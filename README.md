@@ -65,3 +65,6 @@ Las siguientes historias de usuario definen el comportamiento esperado del siste
 
 Las pruebas se han ejecutado correctamente utilizando el comando:
 
+```bash
+mvn test
+
