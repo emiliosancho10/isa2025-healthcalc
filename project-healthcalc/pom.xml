@@ -30,6 +30,7 @@
         <configuration>
           <archive>
             <manifest>
+              <addClasspath>true</addClasspath>
               <mainClass>uma.isa.healthcalc.Main</mainClass>
             </manifest>
           </archive>
