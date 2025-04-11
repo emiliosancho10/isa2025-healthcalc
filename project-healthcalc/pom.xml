@@ -15,11 +15,11 @@
 
   <build>
     <plugins>
-      <!-- Plugin para ejecutar tests -->
+      <!-- Plugin para compilar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
       </plugin>
 
       <!-- Plugin para crear el .jar ejecutable -->
@@ -30,11 +30,17 @@
         <configuration>
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
               <mainClass>uma.isa.healthcalc.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
+      </plugin>
+
+      <!-- Plugin para ejecutar tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
       </plugin>
     </plugins>
   </build>
