@@ -1,4 +1,3 @@
-HEAD
 package runners;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
@@ -13,9 +12,4 @@ import static io.cucumber.junit.platform.engine.Constants.GLUE_PROPERTY_NAME;
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepdefinitions")
 public class RunCucumberTest {
-
-    
-public class RunCucumberTest {
-    
-dbbe8ab (chore: fix Guardar cambios pendientes)
 }
