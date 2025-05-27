@@ -4,6 +4,7 @@ import healthcalc.adapter.HealthAdapter;
 import healthcalc.adapter.HealthHospital;
 import uma.isa.healthcalc.view.*;
 import uma.isa.healthcalc.controller.*;
+import healthcalc.strategy.*; // 👈 Importamos el paquete strategy
 
 public class Main {
     public static void main(String[] args) {
@@ -19,5 +20,12 @@ public class Main {
 
         System.out.println("BMR para hospital: " + bmr);
         System.out.println("Peso ideal para hospital: " + ideal);
+
+        // Prueba rápida del patrón Strategy
+        BMRCalculator calculator = new BMRCalculator(new HarrisBenedictStrategy());
+        System.out.println("BMR (Harris-Benedict): " + calculator.calculate(70, 175, 'm', 25));
+
+        calculator.setStrategy(new MifflinStJeorStrategy());
+        System.out.println("BMR (Mifflin-St Jeor): " + calculator.calculate(70, 175, 'm', 25));
     }
 }
