@@ -97,7 +97,7 @@ project-healthcalc/
 │   ├── healthcalc/strategy/
 │   ├── healthcalc/stats/
 │   └── healthcalc/multilang/
-└── pom.xml
+
 
 ## ✅ Conclusión
 
@@ -111,4 +111,4 @@ La práctica cumple con todos los requisitos del guion:
 - ✔️ Pruebas realizadas en la clase `Main.java`
 - ✔️ Estructura del repositorio limpia y adecuada para entrega
 
-> 📦 Proyecto listo para evaluación y entrega.
+
