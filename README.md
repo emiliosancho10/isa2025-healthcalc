@@ -1,76 +1,114 @@
-# Práctica 4 - Interfaz Gráfica en Java (MVC + Swing)
+# Práctica 6 – Patrones de Diseño en la Calculadora de Salud
 
-📌 **Objetivos**  
-El objetivo principal de esta práctica ha sido implementar una interfaz gráfica funcional para la calculadora de salud desarrollada en las prácticas anteriores. Se ha seguido el patrón de diseño **Modelo-Vista-Controlador (MVC)**, utilizando **Java + Swing**, con una estructura de proyecto organizada y modular.
+## 🎯 Objetivo
 
----
+El objetivo de esta práctica es aplicar diversos **patrones de diseño** a la calculadora de salud desarrollada en prácticas anteriores, mejorando su arquitectura en términos de reutilización, extensibilidad y mantenibilidad. Se han aplicado los siguientes patrones:
 
-🖌️ **Diseño de Interfaz (Mockup)**  
-Se ha diseñado un prototipo previo de la interfaz gráfica utilizando una herramienta de diseño, que refleja las principales historias de usuario del sistema. Este mockup puede encontrarse en:
-
-```
-doc/mockup.png
-```
+- 🧩 **Singleton** (apartado 2)
+- 🔌 **Adapter** (apartado 3a)
+- 🧠 **Strategy + Proxy** (apartado 3b)
+- 🧱 **Bridge + Decorator** (apartado 3c)
 
 ---
 
-💻 **Implementación técnica**  
+## 🌿 Apartado 1: Gestión del repositorio
 
-- Se ha desarrollado una interfaz gráfica con Java Swing, utilizando `JFrame`, `JTextField`, `JLabel`, `JButton`, `JComboBox` y `JTextArea`, entre otros componentes.
-- Se ha seguido fielmente el patrón **MVC**:
-  - **Modelo**: clase `HealthCalc` con la lógica de negocio (peso ideal, TMB, IMC, RMC).
-  - **Vista**: `HealthCalcView` e interfaz `IHealthCalcView` para la interacción.
-  - **Controlador**: `HealthCalcController` gestiona los eventos y errores.
-- El código fuente se ha organizado en paquetes:
-  - `model/`
-  - `view/`
-  - `controller/`
-- El proyecto incluye una clase `Main` para lanzar la aplicación.
+Se ha creado la rama `practica6` a partir de `practica5`. En ella se ha desarrollado toda la implementación de esta práctica, incluyendo el código fuente, los diagramas y este `README.md`.
 
 ---
 
-🧪 **Pruebas y Control de Errores**  
-- Se ha validado que todos los campos numéricos se introducen correctamente (altura, peso, edad).
-- Se controlan errores como campos vacíos, datos no válidos o conversiones erróneas.
-- Se muestran mensajes de error claros mediante `JOptionPane`.
+## 🧩 Apartado 2: Patrón Singleton
+
+Se ha aplicado el patrón Singleton a la clase `HealthCalcImpl`, garantizando que solo se cree una única instancia reutilizable durante toda la ejecución de la aplicación.
+
+- **Interfaz**: `HealthCalc`
+- **Clase Singleton**: `HealthCalcImpl`
+- **Uso**: `HealthCalcImpl.getInstance()`
+- **Diagrama UML**:  
+  ![Singleton](design_patterns/diagrama_2_singleton.png)
+- **Fuente UML**: `design_patterns/src/diagrama_2_singleton.puml`
 
 ---
 
-📦 **Exportación del Proyecto**  
+## 🔌 Apartado 3a: Patrón Adapter
 
-Se ha generado un archivo `.jar` ejecutable a partir del proyecto con Maven. Para ejecutarlo:
+Se ha aplicado el patrón Adapter para adaptar la calculadora a una interfaz proporcionada por un sistema hospitalario (`HealthHospital`), manteniendo reutilizable la lógica de la calculadora original.
 
-```bash
-java -jar target/HealthCalc-0.0.1-SNAPSHOT.jar
-```
-
-📁 El archivo `.jar` se encuentra en:
-
-```
-target/HealthCalc-0.0.1-SNAPSHOT.jar
-```
+- **Interfaz externa**: `HealthHospital`
+- **Adaptador creado**: `HealthAdapter`
+- **Ubicación**: `healthcalc.adapter`
+- **Prueba en**: `Main.java`
+- **Diagrama UML**:  
+  ![Adapter](design_patterns/adapter_healthhospital.png)
+- **Fuente UML**: `design_patterns/src/adapter_healthhospital.vpp`
 
 ---
 
-📚 **Estructura del Proyecto**  
-```
+## 🧠 Apartado 3b: Patrón Strategy + Proxy
+
+Se ha implementado el patrón Strategy para definir distintas estrategias de cálculo del BMR (por ejemplo, Harris-Benedict y Mifflin-St Jeor). Además, se ha utilizado un Proxy (`BMRCalculatorWithStats`) para registrar el uso anónimo de la calculadora y obtener estadísticas agregadas de los pacientes.
+
+- **Paquetes**: `healthcalc.strategy`, `healthcalc.stats`
+- **Clases clave**:
+  - `BMRStrategy` (interfaz)
+  - `HarrisBenedictStrategy`, `MifflinStJeorStrategy`
+  - `BMRCalculator`
+  - `BMRCalculatorWithStats`, `Paciente`
+- **Prueba en**: `Main.java`
+- **Diagrama UML**:  
+  ![Strategy + Proxy](design_patterns/strategy_bmr_diagram.png)
+- **Fuente UML**: `design_patterns/src/strategy_bmr_diagram.vpp`
+
+---
+
+## 🧱 Apartado 3c: Patrón Bridge + Decorator
+
+Se ha diseñado una estructura extensible para soportar distintas unidades de medida (kilogramos/metros, libras/pies) y distintos idiomas (español e inglés) al generar el mensaje de salida. Para ello, se han aplicado los patrones Bridge (para las conversiones de unidades) y Decorator (para añadir el mensaje multilingüe).
+
+- **Paquete**: `healthcalc.multilang`
+- **Componentes**:
+  - `UnitConverter` (interfaz), `EuropeanUnitConverter`, `AmericanUnitConverter`
+  - `HealthCalculatorBase`
+  - `HealthCalculatorWithMessageES`, `HealthCalculatorWithMessageEN`
+- **Prueba en**: `Main.java`
+- **Diagrama UML**:  
+  ![Bridge + Decorator](design_patterns/diagrama_3c_bridge_decorator.png)
+- **Fuente UML**: `design_patterns/src/diagrama_3c_bridge_decorator.puml`
+
+---
+
+## 📁 Estructura del proyecto
+
+```plaintext
 project-healthcalc/
-├── src/
-│   └── main/
-│       └── java/
-│           └── uma/
-│               └── isa/
-│                   └── healthcalc/
-│                       ├── model/
-│                       ├── view/
-│                       ├── controller/
-│                       └── Main.java
-├── pom.xml
-└── doc/
-    └── mockup.png
-```
+├── design_patterns/
+│   ├── diagrama_2_singleton.png
+│   ├── adapter_healthhospital.png
+│   ├── strategy_bmr_diagram.png
+│   ├── diagrama_3c_bridge_decorator.png
+│   └── src/
+│       ├── diagrama_2_singleton.puml
+│       ├── adapter_healthhospital.puml
+│       ├── strategy_bmr_diagram.puml
+│       └── diagrama_3c_bridge_decorator.puml
+├── src/main/java/
+│   ├── healthcalc/
+│   ├── healthcalc/adapter/
+│   ├── healthcalc/strategy/
+│   ├── healthcalc/stats/
+│   └── healthcalc/multilang/
+└── pom.xml
 
----
+## ✅ Conclusión
 
-✅ **Resumen**  
-La aplicación se ha implementado con éxito utilizando Swing y el patrón MVC. Se ha validado su funcionalidad, el control de errores y su correcta empaquetación en un `.jar`. Se ha seguido un flujo de trabajo organizado mediante ramas, commits descriptivos y estructura modular.
+Se han aplicado correctamente cuatro patrones de diseño fundamentales integrados sobre la arquitectura del proyecto original, manteniendo separación de responsabilidades y favoreciendo su extensibilidad.
+
+La práctica cumple con todos los requisitos del guion:
+
+- ✔️ Implementación Java modular y probada
+- ✔️ Diagramas UML en formato `.png` + fuente en `.vpp` o `.puml`
+- ✔️ Código organizado por paquetes
+- ✔️ Pruebas realizadas en la clase `Main.java`
+- ✔️ Estructura del repositorio limpia y adecuada para entrega
+
+> 📦 Proyecto listo para evaluación y entrega.
