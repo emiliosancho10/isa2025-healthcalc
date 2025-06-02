@@ -26,4 +26,15 @@ public interface HealthCalc {
      * @throws Exception
      */
     float calculateBMR(float weight, int height, char gender, int age) throws Exception;
+
+    /**
+ 	 * Calculate the Body Mass Index (BMI) of a person.
+ 	 *
+ 	 * @param weight Weight in kg.
+ 	 * @param height Height in cm.
+ 	 * @return The BMI value.
+ 	 * @throws Exception
+ 	 */
+	float calculateBMI(float weight, int height) throws Exception;
+
 }

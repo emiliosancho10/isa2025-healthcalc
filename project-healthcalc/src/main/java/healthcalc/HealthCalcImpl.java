@@ -31,10 +31,15 @@ public float calculateIdealWeight(int height, char gender) throws Exception {
     return idealWeightCalculator.calculate(height, gender);
 }
 
-@Override
+    @Override
 public float calculateBMR(float weight, int height, char gender, int age) throws Exception {
     return bmrCalculator.calculate(weight, height, gender, age);
 }
+    @Override
+public float calculateBMI(float weight, int height) throws Exception {
+    return bmiCalculator.calculate(weight, height);
+}
+
 
 }
 
