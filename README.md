@@ -1,114 +1,102 @@
-# Práctica 6 – Patrones de Diseño en la Calculadora de Salud
+# Práctica 7 - Refactorización del código HealthCalc
 
-## 🎯 Objetivo
+## 🔄 Objetivo
 
-El objetivo de esta práctica es aplicar diversos **patrones de diseño** a la calculadora de salud desarrollada en prácticas anteriores, mejorando su arquitectura en términos de reutilización, extensibilidad y mantenibilidad. Se han aplicado los siguientes patrones:
-
-- 🧩 **Singleton** (apartado 2)
-- 🔌 **Adapter** (apartado 3a)
-- 🧠 **Strategy + Proxy** (apartado 3b)
-- 🧱 **Bridge + Decorator** (apartado 3c)
+El objetivo de esta práctica es aplicar refactorizaciones al código de la calculadora de salud desarrollada previamente, con el fin de mejorar su claridad, mantenibilidad y extensibilidad. Para ello se han seguido los principios de refactorización definidos por Martin Fowler, aplicando "bad smells" reconocibles y usando patrones como "Extract Class", "Rename Method" y "Split Interface".
 
 ---
 
-## 🌿 Apartado 1: Gestión del repositorio
+## 🔧 Refactorings principales aplicados
 
-Se ha creado la rama `practica6` a partir de `practica5`. En ella se ha desarrollado toda la implementación de esta práctica, incluyendo el código fuente, los diagramas y este `README.md`.
+### 📝 1. Split Interface
 
----
+**Bad smell**: Interface demasiado genérica.
 
-## 🧩 Apartado 2: Patrón Singleton
+**Refactoring aplicado**: No se ha dividido en interfaces múltiples, pero se ha mejorado la semántica de `HealthCalc` para que refleje métodos más descriptivos y específicos.
 
-Se ha aplicado el patrón Singleton a la clase `HealthCalcImpl`, garantizando que solo se cree una única instancia reutilizable durante toda la ejecución de la aplicación.
+**Categoría**: Organización
 
-- **Interfaz**: `HealthCalc`
-- **Clase Singleton**: `HealthCalcImpl`
-- **Uso**: `HealthCalcImpl.getInstance()`
-- **Diagrama UML**:  
-  ![Singleton](design_patterns/diagrama_2_singleton.png)
-- **Fuente UML**: `design_patterns/src/diagrama_2_singleton.puml`
+**Motivo**: Aunque no se dividió en varias interfaces, los nombres de los métodos fueron mejorados para clarificar el propósito.
 
----
+**Clase afectada**:
 
-## 🔌 Apartado 3a: Patrón Adapter
-
-Se ha aplicado el patrón Adapter para adaptar la calculadora a una interfaz proporcionada por un sistema hospitalario (`HealthHospital`), manteniendo reutilizable la lógica de la calculadora original.
-
-- **Interfaz externa**: `HealthHospital`
-- **Adaptador creado**: `HealthAdapter`
-- **Ubicación**: `healthcalc.adapter`
-- **Prueba en**: `Main.java`
-- **Diagrama UML**:  
-  ![Adapter](design_patterns/adapter_healthhospital.png)
-- **Fuente UML**: `design_patterns/src/adapter_healthhospital.vpp`
+* `HealthCalc.java`
 
 ---
 
-## 🧠 Apartado 3b: Patrón Strategy + Proxy
+### ✍️ 2. Rename Methods
 
-Se ha implementado el patrón Strategy para definir distintas estrategias de cálculo del BMR (por ejemplo, Harris-Benedict y Mifflin-St Jeor). Además, se ha utilizado un Proxy (`BMRCalculatorWithStats`) para registrar el uso anónimo de la calculadora y obtener estadísticas agregadas de los pacientes.
+**Bad smell**: Nombres de métodos poco expresivos como `idealWeight()` o `basalMetabolicRate()`.
 
-- **Paquetes**: `healthcalc.strategy`, `healthcalc.stats`
-- **Clases clave**:
-  - `BMRStrategy` (interfaz)
-  - `HarrisBenedictStrategy`, `MifflinStJeorStrategy`
-  - `BMRCalculator`
-  - `BMRCalculatorWithStats`, `Paciente`
-- **Prueba en**: `Main.java`
-- **Diagrama UML**:  
-  ![Strategy + Proxy](design_patterns/strategy_bmr_diagram.png)
-- **Fuente UML**: `design_patterns/src/strategy_bmr_diagram.vpp`
+**Refactoring aplicado**: Renombrado a `calculateIdealWeight()` y `calculateBMR()` para mejorar la claridad y coherencia con el estándar Java.
 
----
+**Categoría**: Comportamiento
 
-## 🧱 Apartado 3c: Patrón Bridge + Decorator
+**Motivo**: Mejora de legibilidad y comprensión del código.
 
-Se ha diseñado una estructura extensible para soportar distintas unidades de medida (kilogramos/metros, libras/pies) y distintos idiomas (español e inglés) al generar el mensaje de salida. Para ello, se han aplicado los patrones Bridge (para las conversiones de unidades) y Decorator (para añadir el mensaje multilingüe).
+**Clases afectadas**:
 
-- **Paquete**: `healthcalc.multilang`
-- **Componentes**:
-  - `UnitConverter` (interfaz), `EuropeanUnitConverter`, `AmericanUnitConverter`
-  - `HealthCalculatorBase`
-  - `HealthCalculatorWithMessageES`, `HealthCalculatorWithMessageEN`
-- **Prueba en**: `Main.java`
-- **Diagrama UML**:  
-  ![Bridge + Decorator](design_patterns/diagrama_3c_bridge_decorator.png)
-- **Fuente UML**: `design_patterns/src/diagrama_3c_bridge_decorator.puml`
+* `HealthCalc`
+* `HealthCalcImpl`
+* `HealthAdapter`
+* Tests unitarios y de Cucumber
 
 ---
 
-## 📁 Estructura del proyecto
+### 🛠️ 3. Extract Class
 
-```plaintext
-project-healthcalc/
-├── design_patterns/
-│   ├── diagrama_2_singleton.png
-│   ├── adapter_healthhospital.png
-│   ├── strategy_bmr_diagram.png
-│   ├── diagrama_3c_bridge_decorator.png
-│   └── src/
-│       ├── diagrama_2_singleton.puml
-│       ├── adapter_healthhospital.puml
-│       ├── strategy_bmr_diagram.puml
-│       └── diagrama_3c_bridge_decorator.puml
-├── src/main/java/
-│   ├── healthcalc/
-│   ├── healthcalc/adapter/
-│   ├── healthcalc/strategy/
-│   ├── healthcalc/stats/
-│   └── healthcalc/multilang/
+**Bad smell**: Clases con demasiadas responsabilidades ("God Class").
 
+**Refactoring aplicado**: Extracción de los cálculos en clases independientes:
+
+* `BMICalculator`: calcula el índice de masa corporal (IMC)
+* `BMRCalculator`: calcula la tasa metabólica basal
+* `IdealWeightCalculator`: calcula el peso ideal
+
+**Categoría**: Comportamiento / organización
+
+**Motivo**: Separar responsabilidades, facilitar testing y reutilización.
+
+**Carpeta creada**: `healthcalc.calculators`
+
+**Clases afectadas**:
+
+* `HealthCalcImpl.java` modificada para delegar los cálculos
+
+---
+
+
+## 🎓 Validación de los refactorings
+
+* ✅ El proyecto compila correctamente (`mvn clean install` finalizado con éxito tras las correcciones).
+* ✅ La funcionalidad del sistema sigue siendo la misma.
+* ✅ Los tests unitarios (`HealthCalcTest`) y los de Cucumber (`RunCucumberTest`) han sido adaptados.
+* ✅ Se ha actualizado la clase `HealthAdapter` para usar los nuevos nombres de métodos.
+
+---
+
+## 📑 Documentación
+
+El archivo `project-healthcalc/doc/refactorings.md` contiene la documentación detallada de los refactorings principales aplicados, incluyendo:
+
+* Bad smell detectado
+* Refactoring aplicado
+* Categoría
+* Motivo
+* Clases afectadas
+
+---
+
+## 🔍 Commits y rama
+
+* Rama creada: `practica7`
+* Commits realizados siguiendo convenciones de `Conventional Commits` (feat:, refactor:, fix:, docs:)
+* Commits atómicos y lógicos según los cambios realizados por refactoring
+
+---
 
 ## ✅ Conclusión
 
-Se han aplicado correctamente cuatro patrones de diseño fundamentales integrados sobre la arquitectura del proyecto original, manteniendo separación de responsabilidades y favoreciendo su extensibilidad.
-
-La práctica cumple con todos los requisitos del guion:
-
-- ✔️ Implementación Java modular y probada
-- ✔️ Diagramas UML en formato `.png` + fuente en `.vpp` o `.puml`
-- ✔️ Código organizado por paquetes
-- ✔️ Pruebas realizadas en la clase `Main.java`
-- ✔️ Estructura del repositorio limpia y adecuada para entrega
-
+Se han aplicado correctamente los principales refactorings solicitados en el guion, manteniendo el sistema funcional y bien documentado. Se han seguido buenas prácticas de desarrollo y uso adecuado de Git.
+El código final es más modular, legible y mantenible.
 
